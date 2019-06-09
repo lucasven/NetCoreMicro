@@ -4,20 +4,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Microsoft.AspNetCore;
-using NetCoreMicro.Common.RabbitMq;
-using NetCoreMicro.Common.Events;
-using NetCoreMicro.API.Handlers;
+using NetCoreMicro.Common.Commands;
 
-namespace NetCoreMicro
+namespace NetCoreMicro.Services.Identity
 {
     public class Startup
     {
@@ -32,8 +27,6 @@ namespace NetCoreMicro
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddRabbitMq(Configuration);
-            services.AddScoped<IEventHandler<ActivityCreated>, ActivityCreatedHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,7 +40,7 @@ namespace NetCoreMicro
             {
                 app.UseHsts();
             }
-            
+
             app.UseHttpsRedirection();
             app.UseMvc();
         }

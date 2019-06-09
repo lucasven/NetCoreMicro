@@ -7,10 +7,11 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using NetCoreMicro.Common.Commands;
 using NetCoreMicro.Common.Events;
 using NetCoreMicro.Common.Services;
 
-namespace NetCoreMicro
+namespace NetCoreMicro.Services.Identity
 {
     public class Program
     {
@@ -18,10 +19,9 @@ namespace NetCoreMicro
         {
             ServiceHost.Create<Startup>(args)
                 .UseRabbitMq()
-                .SubscribeToEvent<ActivityCreated>()
+                //.SubscribeToCommand<CreateUser>()
                 .Build()
                 .Run();
         }
-        
     }
 }
