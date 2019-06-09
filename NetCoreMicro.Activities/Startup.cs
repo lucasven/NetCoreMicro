@@ -14,6 +14,10 @@ using NetCoreMicro.Services.Activities.Handlers;
 using NetCoreMicro.Common.Commands;
 using NetCoreMicro.Common.Events;
 using NetCoreMicro.Common.RabbitMq;
+using NetCoreMicro.Common.Mongo;
+using NetCoreMicro.Services.Activities.Domain.Repositories;
+using NetCoreMicro.Services.Activities.Repositories;
+using NetCoreMicro.Services.Activities.Services;
 
 namespace NetCoreMicro.Services.Activities
 {
@@ -30,8 +34,14 @@ namespace NetCoreMicro.Services.Activities
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddLogging();
+            services.AddMongoDB(Configuration);
             services.AddRabbitMq(Configuration);
-            //services.AddScoped<ICommandHandler<CreateActivity>, CreateActivityHandler>();
+            services.AddScoped<ICommandHandler<CreateActivity>, CreateActivityHandler>();
+            services.AddScoped<IActivityRepository, ActivityRepository>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<IDatabaseSeeder, CustomMongoSeeder>();
+            services.AddScoped<IActivityService, ActivityService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,6 +53,8 @@ namespace NetCoreMicro.Services.Activities
             }
 
             //app.UseHttpsRedirection();
+            app.ApplicationServices.GetService<IDatabaseInitializer>().InitializeAsync();
+
             app.UseMvc();
         }
     }
