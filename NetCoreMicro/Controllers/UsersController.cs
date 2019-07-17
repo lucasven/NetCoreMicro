@@ -20,7 +20,7 @@ namespace NetCoreMicro.API.Controllers
             _busClient = busClient;
         }
 
-        [HttpPost("register")]
+        [HttpPost("")]
         public async Task<ActionResult> Post([FromBody]CreateUser command)
         {
             await _busClient.PublishAsync(command);

@@ -22,7 +22,7 @@ namespace NetCoreMicro.Services.Activities.Domain.Models
 
         public Activity(Guid _id, Category _category, Guid _userId, string _name, string _description, DateTime _createdat)
         {
-            if(string.IsNullOrEmpty(name))
+            if(string.IsNullOrEmpty(_name))
             {
                 throw new NetCoreMicroException("empty_activity_name",
                     $"Activity name cannot be empty.");

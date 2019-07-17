@@ -11,6 +11,13 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using NetCoreMicro.Common.Commands;
+using NetCoreMicro.Common.Mongo;
+using NetCoreMicro.Common.RabbitMq;
+using NetCoreMicro.Services.Identity.Domain.Repositories;
+using NetCoreMicro.Services.Identity.Domain.Services;
+using NetCoreMicro.Services.Identity.Handlers;
+using NetCoreMicro.Services.Identity.Repositories;
+using NetCoreMicro.Services.Identity.Services;
 
 namespace NetCoreMicro.Services.Identity
 {
@@ -27,6 +34,13 @@ namespace NetCoreMicro.Services.Identity
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddLogging();
+            services.AddMongoDB(Configuration);
+            services.AddRabbitMq(Configuration);
+            services.AddScoped<ICommandHandler<CreateUser>, CreateUserHandler>();
+            services.AddScoped<IEncrypter, Encrypter>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserService, UserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

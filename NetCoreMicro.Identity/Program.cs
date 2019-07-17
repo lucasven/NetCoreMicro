@@ -19,7 +19,7 @@ namespace NetCoreMicro.Services.Identity
         {
             ServiceHost.Create<Startup>(args)
                 .UseRabbitMq()
-                //.SubscribeToCommand<CreateUser>()
+                .SubscribeToCommand<CreateUser>()
                 .Build()
                 .Run();
         }
