@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using NetCoreMicro.Common.Auth;
 using NetCoreMicro.Common.Commands;
 using NetCoreMicro.Common.Mongo;
 using NetCoreMicro.Common.RabbitMq;
@@ -35,6 +36,7 @@ namespace NetCoreMicro.Services.Identity
         {
             services.AddMvc();
             services.AddLogging();
+            services.AddJwt(Configuration);
             services.AddMongoDB(Configuration);
             services.AddRabbitMq(Configuration);
             services.AddScoped<ICommandHandler<CreateUser>, CreateUserHandler>();

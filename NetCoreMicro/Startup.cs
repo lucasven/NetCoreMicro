@@ -16,6 +16,7 @@ using Microsoft.AspNetCore;
 using NetCoreMicro.Common.RabbitMq;
 using NetCoreMicro.Common.Events;
 using NetCoreMicro.API.Handlers;
+using NetCoreMicro.Common.Auth;
 
 namespace NetCoreMicro
 {
@@ -32,8 +33,11 @@ namespace NetCoreMicro
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddJwt(Configuration);
             services.AddRabbitMq(Configuration);
             services.AddScoped<IEventHandler<ActivityCreated>, ActivityCreatedHandler>();
+            //services.AddScoped<IEventHandler<UserAuthenticated>, UserAuthenticatedHandler>();
+            //services.AddScoped<IEventHandler<UserCreated>, UserCreatedHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
