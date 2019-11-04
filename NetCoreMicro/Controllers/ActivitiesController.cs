@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NetCoreMicro.Common.Commands;
@@ -29,5 +31,9 @@ namespace NetCoreMicro.API.Controllers
 
             return Accepted($"activities/{command.ID}");
         }
+
+        [HttpGet("")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public IActionResult Get() => Content("Secured");
     }
 }

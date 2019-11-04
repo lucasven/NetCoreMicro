@@ -18,6 +18,7 @@ namespace NetCoreMicro.Services.Identity.Controllers
             this.userService = userService;
         }
 
+        [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] AuthenticateUser command)
             => Json(await userService.LoginAsync(command.Email, command.Password));
     }
