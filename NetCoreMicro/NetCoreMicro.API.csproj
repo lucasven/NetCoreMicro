@@ -29,6 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\NetCoreMicro.Activities\NetCoreMicro.Services.Activities.csproj" />
     <ProjectReference Include="..\NetCoreMicro.Common\NetCoreMicro.Common.csproj" />
   </ItemGroup>
 

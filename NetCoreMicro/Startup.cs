@@ -17,6 +17,8 @@ using NetCoreMicro.Common.RabbitMq;
 using NetCoreMicro.Common.Events;
 using NetCoreMicro.API.Handlers;
 using NetCoreMicro.Common.Auth;
+using NetCoreMicro.API.Repositories;
+using NetCoreMicro.Common.Mongo;
 
 namespace NetCoreMicro
 {
@@ -34,10 +36,12 @@ namespace NetCoreMicro
         {
             services.AddMvc();
             services.AddJwt(Configuration);
+            services.AddMongoDB(Configuration);
             services.AddRabbitMq(Configuration);
             services.AddScoped<IEventHandler<ActivityCreated>, ActivityCreatedHandler>();
-            //services.AddScoped<IEventHandler<UserAuthenticated>, UserAuthenticatedHandler>();
-            //services.AddScoped<IEventHandler<UserCreated>, UserCreatedHandler>();
+            services.AddScoped<IEventHandler<UserAuthenticated>, UserAuthenticatedHandler>();
+            services.AddScoped<IEventHandler<UserCreated>, UserCreatedHandler>();
+            services.AddScoped<IActivityRepository, ActivityRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
