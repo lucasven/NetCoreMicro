@@ -11,7 +11,7 @@ namespace NetCoreMicro.Services.Activities.Controllers
     [ApiController]
     public class HomeController : Controller
     {
-        [HttpGet("")]
-        public IActionResult Get() => Content("Hello From NetCoreMicro Activities!");
+        //[HttpGet("")]
+        //public IActionResult Get() => Content("Hello From NetCoreMicro Activities!");
     }
 }

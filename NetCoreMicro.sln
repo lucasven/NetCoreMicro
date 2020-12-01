@@ -14,12 +14,18 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{88A82FBB-DAA7-4AC6-AED9-19348A1BB7D1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{0AF6CB2C-F12C-4D04-B8DC-40A1399449A2}"
+	ProjectSection(SolutionItems) = preProject
+		scripts\docker-build.sh = scripts\docker-build.sh
+		scripts\docker-compose.yaml = scripts\docker-compose.yaml
+		scripts\dotnet-publish.sh = scripts\dotnet-publish.sh
+		scripts\nginx.config = scripts\nginx.config
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{816E4E50-43C8-4205-9F71-F5AE2F0F8B36}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreMicro.API.Tests", "UnitTests\NetCoreMicro.API.Tests.csproj", "{C81D9B2C-541F-45CC-B6B9-F6C04865BAE7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreMicro.API.Tests", "UnitTests\NetCoreMicro.API.Tests.csproj", "{C81D9B2C-541F-45CC-B6B9-F6C04865BAE7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreMicro.Services.Activities.Tests", "NetCoreMicro.Services.Activities.Tests\NetCoreMicro.Services.Activities.Tests.csproj", "{B3767253-EFE1-4ACB-991E-E65C123D773B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreMicro.Services.Activities.Tests", "NetCoreMicro.Services.Activities.Tests\NetCoreMicro.Services.Activities.Tests.csproj", "{B3767253-EFE1-4ACB-991E-E65C123D773B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
